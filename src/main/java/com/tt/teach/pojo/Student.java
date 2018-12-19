@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  *@作者：zhujungui
  *@时间：2018/12/19 15:16
- *@描述：学生——实体类a
+ *@描述：学生——实体类
  */
 public class Student {
     private  Integer studentNo;
