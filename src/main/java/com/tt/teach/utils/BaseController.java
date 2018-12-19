@@ -24,7 +24,7 @@ public class BaseController {
     protected static final String FORWARD = "forward:";
     protected static final String REDIRECT = "redirect:";
 
-    //3.
+    //3.里面常用的方法，
     public HttpServletRequest getRequest() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return request;

@@ -61,4 +61,5 @@ public class StudentController extends BaseController {
         session.removeAttribute(SESSION_KEY);
         return REDIRECT + "/stu/login";
     }
+
 }
