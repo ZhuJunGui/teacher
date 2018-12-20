@@ -3,6 +3,8 @@ package com.tt.teach.pojo;
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 import java.util.Date;
+import java.util.List;
+
 /**
  *@作者：zhujungui
  *@时间：2018/12/19 15:16
@@ -19,6 +21,15 @@ public class Student {
     private Date bornDate;
     private String email;
     private String identityCard;
+    private String gradeName;
+
+    public String getGradeName() {
+        return gradeName;
+    }
+
+    public void setGradeName(String gradeName) {
+        this.gradeName = gradeName;
+    }
 
     public Student(Integer studentNo, String loginPwd, String studentName, String sex, Integer gradeId, String phone, String address, Date bornDate, String email, String identityCard) {
         this.studentNo = studentNo;

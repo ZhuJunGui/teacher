@@ -1,9 +1,11 @@
 package com.tt.teach.service.impl;
 
+import com.tt.teach.dao.ResultDao;
 import com.tt.teach.dao.StudentDao;
 import com.tt.teach.pojo.Student;
 import com.tt.teach.service.StudentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,5 +29,15 @@ public class StudentServiceImpl  implements StudentService{
     @Override
     public List<Student> getStudentList() {
         return studentDao.getStudentList();
+    }
+
+    @Transactional
+    public int updateStudent(Student student) {
+        return studentDao.updateStudent(student);
+    }
+
+    @Transactional
+    public int deleteStudent(Integer stuNo) {
+        return studentDao.deleteStudent(stuNo);
     }
 }

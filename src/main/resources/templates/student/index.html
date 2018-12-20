@@ -40,12 +40,11 @@
 
 <body>
 
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <div class="left_header">
-                <p class="headImg"><img th:src="@{/static/images/tx.png}" alt=""></p>
+                <p class="headImg"><img th:src="@{/static/images/1e71585c01b4efaf907d8a2b60cff42f.jpg}" alt=""></p>
                 <p class="userName" th:text="${session.studentName}">admin</p>
                 <p class="admin_class">(学生管理员)</p>
                 <p class="logout"><input type="button" value="注销" onclick="logout()"></p>
@@ -53,8 +52,8 @@
 
             <ul class="nav nav-sidebar">
                 <li class="active1"><a th:href="@{/stu/student}" target="menuFrame">学生查询</a></li>
-                <li class="active1"><a th:href="@{/stu/a}" target="menuFrame">成绩查询</a></li>
-                <li class="active1"><a th:href="@{/stu/a}" target="menuFrame">年级查询</a></li>
+                <li class="active1"><a th:href="@{/res/result}" target="menuFrame">成绩查询</a></li>
+                <li class="active1"><a th:href="@{/stu/a}" target="menuFrame">科目查询</a></li>
             </ul>
 
             <div class="left_footer">
