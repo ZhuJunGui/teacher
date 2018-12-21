@@ -94,27 +94,27 @@
     window.myselfEvents = {
         "click .edit": function (e, value, row, index) {
             $("#myModal").modal("show");
-            $("#stuNo").val(row.studentName);
-            $("#stuName").val(row.studentNo);
+            $("#stuNo").val(row.studentNo);
+            $("#stuName").val(row.studentName);
             $("#stuPwd").val(row.loginPwd);
             $("#stuPhone").val(row.phone);
         },
         "click .delete": function (e, value, row, index) {
-          var stuNo=row.studentNo;
-          var isOk=confirm("您确定要删除吗？");
-          if (isOk){
-              $.ajax({
-                  url:"/studeleteStudent/"+stuNo,
-                  type:"DELETE",
-                  success:function (data) {
-                      console.log(data);
-                      alert(data.msg);
+            var stuNo = row.studentNo;
+            var isOk = confirm("您确定要删除吗？");
+            if (isOk) {
+                $.ajax({
+                    url: "/studeleteStudent/" + stuNo,
+                    type: "DELETE",
+                    success: function (data) {
+                        console.log(data);
+                        alert(data.msg);
                         //重新渲染一下页面
-                      window,location.reload();
-                  }
-              })
+                        window, location.reload();
+                    }
+                })
 
-          }
+            }
 
         }
     }

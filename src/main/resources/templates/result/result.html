@@ -47,7 +47,6 @@
 <!--1.空的table-->
 <table id="table_result" data-height="360" data-toggle="table">
 
-
 </table>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -110,62 +109,108 @@
 <script>
     function findResFn() {
         $("#table_result").bootstrapTable({
-            url: "/res/getResultList",  //请求URL地址
-            type: "GET",                         //请求类型
-            dataType: "json",            //请求返回数据类型
-            pagination: true,            //是否进行分页
-            search: true,                   //是否有搜索框
-            showRefresh: true,       //是否有刷新按钮
-            pageSize: 5,                   //初始化每页显示几条数据
-            pageList: [1, 2, 3, 4, 5],        //每页显示数据的选择
-            columns: [
-                {
-                    field: "resultNo",
-                    title: "成绩编号",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "studentName",
-                    title: "姓名",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "subjectName",
-                    title: "科目",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "examDate",
-                    title: "考试时间",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "studentResult",
-                    title: "考试成绩",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
+                url: "/res/getResultList",  //请求URL地址
+                type: "GET",                         //请求类型
+                dataType: "json",            //请求返回数据类型
+                pagination: true,            //是否进行分页
+                search: true,                   //是否有搜索框
+                showRefresh: true,       //是否有刷新按钮
+                pageSize: 5,                   //初始化每页显示几条数据
+                pageList: [1, 2, 3, 4, 5],        //每页显示数据的选择
+                columns: [
+                    {
+                        field: "resultNo",
+                        title: "成绩编号",
+                        align: "center",
+                        valign: "middle",
+                        searchable: true
+                    },
+                    {
+                        field: "studentName",
+                        title: "姓名",
+                        align: "center",
+                        valign: "middle",
+                        searchable: true
+                    },
+                    {
+                        field: "subjectName",
+                        title: "科目",
+                        align: "center",
+                        valign: "middle",
+                        searchable: true
+                    },
+                    {
+                        field: "examDate",
+                        title: "考试时间",
+                        align: "center",
+                        valign: "middle",
+                        searchable: true
+                    },
+                    {
+                        field: "studentResult",
+                        title: "考试成绩",
+                        align: "center",
+                        valign: "middle",
+                        searchable: true
+                    }
+                ]
+            }
+        )
+    }
+
+    findResFn();
+
+</script>
+<!--2.关于表格点击每一行tr背景颜色的变化。添加了一个class——》tr_new，后面的操作全是通过这个class去获取主键进行操作的-->
+<script>
+    $(function () {
+        $("#table_result tbody").on("click", "tr", function () {
+            //添加样式时，把上一个取消
+            $("#table_result tbody tr").removeClass("tr_new")
+            //当前选中的行，添加样样式
+            $(this).addClass("tr_new")
+        })
+    })
+
+</script>
+
+<!--3.对添加，保存，编辑，取消编辑，删除进行对应的操作-->
+<script>
+    $(function () {
+        //1.删除
+        $("#del").on("click", function () {
+            var trFather = $(".tr_new");
+            if (trFather.length != 1) {
+                alert("请选中一行要是删除的数据！")
+            } else {
+                var isOk = confirm("您确定要删除吗？");
+                if (isOk) {
+                    var resultNo = trFather.children()[0].innerText;
+                    $.ajax({
+                        url: "/res/deleteResult/" + resultNo,
+                        type: "DELETE",
+                        success: function (date) {
+                            //将后台json数据显示弹出来，进行温馨提示
+                            alert(date.msg);
+                            //提示完，重新渲染一下
+                            window.location.reload();
+                        }
+                    })
                 }
-            ]}
-            )}
-      findResFn();
 
-</script>
-<!--2.关于表格点击每一行tr背景颜色的变化。添加了一个class——》tr_new，后面的操作全是通过这个class取获取主键进行操作的-->
-<script>
-
-</script>
-
-<!--3.对添加，保存，编辑，取消编辑，删除，全部删除进行对应的操作-->
-<script>
+            }
+        })
+        //2.编辑
+        $("#edit").on("click",function () {
+            var trFather=$(".tr_new");
+            if (trFather.length!=1){
+                alert('请选择一行要编辑的数据');
+            }else {
+               var child = trFather.children();
+               console.log(child);
+            }
+        })
+    })
 
 </script>
 <script>
