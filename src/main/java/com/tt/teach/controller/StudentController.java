@@ -108,6 +108,20 @@ public class StudentController extends BaseController {
         }
         return FORWARD + "/stu/student";
     }
+
+    @RequestMapping(value = "/getStuByNo/{studentNo}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getStuByNo(@PathVariable Integer studentNo) {
+        Student student = studentService.getStuByNo(studentNo);
+        if (student!=null) {
+            return JsonResult.ok("有该学生！", student);
+        }
+        return JsonResult.no("没有该学生！", student);
+    }
+
+
+
+
 }
 
 
